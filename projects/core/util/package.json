@@ -1,6 +1,6 @@
 {
   "name": "@ng-techpromux-archetype-project/core-util",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Angular Archetype Project - Core Util",
   "repository": {
     "type": "git",
@@ -20,12 +20,9 @@
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0",
     "crypto-js": "^4.1.1",
-    "dotenv": "^16.3.1",
-    "btoa": "^1.2.1",
     "ngx-logger": "^5.0.12",
     "@ngxs/storage-plugin": "^3.8.1",
-    "uuid": "^9.0.1",
-    "val-loader": "^5.0.1"
+    "uuid": "^9.0.1"
   },
   "dependencies": {},
   "sideEffects": false

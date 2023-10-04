@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as dotEnvVarsToken from '!val-loader!./dotenv-loader';
-
-export class DotEnvLoaderService {
+export class DotEnvVarsParserService {
   public static getVars<T>(
-    appName: string = 'app',
-    environmentName: string = 'prod'
+    dotEnvVarsToken: string,
+    appName: string,
+    environmentName: string
   ): T {
     const appPrefix = appName.toLocaleUpperCase() + '__';
 

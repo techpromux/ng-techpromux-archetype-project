@@ -16,7 +16,7 @@ export * from './lib/crypto/variable/variables';
 
 export * from './lib/dotenv/util-dotenv.module';
 
-export * from './lib/dotenv/service/dotenv-loader.service';
+export * from './lib/dotenv/service/dotenv-vars-parser.service';
 
 // Logger
 
