@@ -1,0 +1,30 @@
+{
+  "name": "@ng-techpromux-archetype-project/ext-ng-dynamic-forms-ui-ngx-bootstrap",
+  "version": "1.0.0",
+  "description": "Angular Archetype Project - Ext - ng-dynamic-forms-ui-ngx-bootstrap",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techpromux/ng-techpromux-archetype-project.git"
+  },
+  "keywords": [
+    "angular",
+    "archetype"
+  ],
+  "author": "Techpromux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/techpromux/ng-techpromux-archetype-project/issues"
+  },
+  "homepage": "https://github.com/techpromux/ng-techpromux-archetype-project/tree/main/projects/ext/ng-dynamic-forms-ui-ngx-bootstrap#readme",
+  "peerDependencies": {
+    "@angular/common": "^16.2.0",
+    "@angular/core": "^16.2.0",
+    "@angular/forms": "~16.2.0",
+    "@ng-dynamic-forms/core": "^18.0.0",
+    "ngx-mask": "^16.3.9",
+    "@ng-select/ng-select": "^11.1.1",
+    "ngx-bootstrap": "^11.0.2"
+  },
+  "dependencies": {},
+  "sideEffects": false
+}

@@ -1,0 +1,51 @@
+{
+  "name": "ext-ngx-perfect-scrollbar",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "projects/ext/ngx-perfect-scrollbar/src",
+  "prefix": "techpromux",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "projects/ext/ngx-perfect-scrollbar/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "projects/ext/ngx-perfect-scrollbar/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "projects/ext/ngx-perfect-scrollbar/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "projects/ext/ngx-perfect-scrollbar/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "projects/ext/ngx-perfect-scrollbar/**/*.ts",
+          "projects/ext/ngx-perfect-scrollbar/**/*.html",
+          "projects/ext/ngx-perfect-scrollbar/package.json"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<c-modal-header>
+  <h5 cModalTitle>
+    <div class="modal-title-content" [innerHTML]="command?.title"></div>
+  </h5>
+  <button cButtonClose (click)="hide()"></button>
+</c-modal-header>
+<c-modal-body>
+  <div class="modal-body-content" [innerHTML]="command?.body"></div>
+</c-modal-body>
+<c-modal-footer>
+  <button cButton style="min-width: 80px" color="primary" (click)="close()">
+    <svg cIcon name="cil-check" width="16" size="sm"></svg>
+    <span class="ps-2 pe-2 align-top">{{
+      'ui.modal.alert.button.close' | translate
+    }}</span>
+  </button>
+</c-modal-footer>

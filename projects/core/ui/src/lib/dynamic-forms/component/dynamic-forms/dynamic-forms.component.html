@@ -1,0 +1,510 @@
+<ng-container
+  *ngIf="
+    _formGroup &&
+    _formLayout &&
+    _formModel &&
+    _isFormGroupCreated &&
+    _isFormModelUpdated &&
+    _isFormLayoutUpdated
+  "
+>
+  <div
+    [class]="defaultFormLayout.container"
+    [class.df-errors-default-display-block]="showDefaultErrorsTpl"
+    style="padding: 0px"
+  >
+    <dynamic-ngx-bootstrap-form
+      #dynamicFormComponent
+      [class]="defaultFormLayout.group"
+      [layout]="_formLayout"
+      [group]="_formGroup"
+      [model]="_formModel"
+      (blur)="onBlur($event)"
+      (change)="onChange($event)"
+      (focus)="onFocus($event)"
+      (bsEvent)="onBsEvent($event)"
+    >
+      <!-- --------------------------------------------------------------------------- -->
+
+      <!-- MODEL ID START & END CUSTOM TEMPLATES -------------------------------------- -->
+
+      <ng-container
+        *ngFor="let controlModel of _formModelSimpleControls; index as i"
+      >
+        <!-- LABEL -->
+
+        <!-- ng-template for label -->
+
+        <!-- ALIGN: START -->
+
+        <ng-template
+          *ngIf="
+            thereIsSomeModelControlStartTplWithSameId(
+              customModelControlsTpl,
+              controlModel
+            )
+          "
+          modelId="{{ controlModel.id }}"
+          [align]="'START'"
+          let-id="id"
+          let-group="group"
+          let-index="index"
+          let-context="context"
+        >
+          <ng-container
+            [ngTemplateOutlet]="
+              getModelControlStartTplWithSameId(
+                customModelControlsTpl,
+                controlModel
+              )['template']
+            "
+            [ngTemplateOutletContext]="{
+              id: id,
+              align: 'START',
+              group: group,
+              index: index,
+              context: context,
+              removeFormArrayItemFn: removeFormArrayItem.bind(this),
+              insertFormArrayItemFn: insertFormArrayItem.bind(this),
+              addFormArrayItemFn: addFormArrayItem.bind(this)
+            }"
+          >
+          </ng-container>
+        </ng-template>
+
+        <!-- ALIGN: PRE_END & END -->
+
+        <ng-template
+          modelId="{{ controlModel.id }}"
+          [align]="'END'"
+          let-id="id"
+          let-group="group"
+          let-index="index"
+          let-context="context"
+        >
+          <input
+            #indexHidden
+            type="hidden"
+            name="{{ id }}-index-{{ index }}"
+            class="df-form-control-item-index {{ id }}-index {{ id }}-index-{{
+              index
+            }}"
+            value="{{ index }}"
+          />
+
+          <!-- IF CUSTOM TEMPLATE IS PROVIDED BY MODEL-ID ------------------------ -->
+
+          <!-- ALIGN: PRE_END -->
+
+          <ng-container
+            *ngIf="
+              thereIsSomeModelControlPreEndTplWithSameId(
+                customModelControlsTpl,
+                controlModel
+              )
+            "
+            [ngTemplateOutlet]="
+              getModelControlPreEndTplWithSameId(
+                customModelControlsTpl,
+                controlModel
+              )['template']
+            "
+            [ngTemplateOutletContext]="{
+              id: id,
+              align: 'END',
+              group: group,
+              index: index,
+              context: context,
+              removeFormArrayItemFn: removeFormArrayItem.bind(this),
+              insertFormArrayItemFn: insertFormArrayItem.bind(this),
+              addFormArrayItemFn: addFormArrayItem.bind(this)
+            }"
+          >
+          </ng-container>
+
+          <!-- ALIGN: END -->
+
+          <ng-container
+            *ngIf="
+              thereIsSomeModelControlEndTplWithSameId(
+                customModelControlsTpl,
+                controlModel
+              )
+            "
+            [ngTemplateOutlet]="
+              getModelControlEndTplWithSameId(
+                customModelControlsTpl,
+                controlModel
+              )['template']
+            "
+            [ngTemplateOutletContext]="{
+              id: id,
+              align: 'END',
+              group: group,
+              index: index,
+              context: context,
+              removeFormArrayItemFn: removeFormArrayItem.bind(this),
+              insertFormArrayItemFn: insertFormArrayItem.bind(this),
+              addFormArrayItemFn: addFormArrayItem.bind(this)
+            }"
+          >
+          </ng-container>
+
+          <!-- IF CUSTOM TEMPLATE IS PROVIDED BY MODEL-TYPE ------------------------ -->
+
+          <ng-container
+            *ngIf="
+              !thereIsSomeModelControlEndTplWithSameId(
+                customModelControlsTpl,
+                controlModel
+              )
+            "
+          >
+            <ng-container
+              *ngIf="
+                thereIsSomeModelControlTplWithSameType(
+                  customModelControlsTpl,
+                  controlModel
+                )
+              "
+            >
+              <ng-container
+                [ngTemplateOutlet]="
+                  getModelControlTplWithSameType(
+                    customModelControlsTpl,
+                    controlModel
+                  )['template']
+                "
+                [ngTemplateOutletContext]="{
+                  id: id,
+                  align: 'END',
+                  group: group,
+                  index: index,
+                  context: context,
+                  removeFormArrayItemFn: removeFormArrayItem.bind(this),
+                  insertFormArrayItemFn: insertFormArrayItem.bind(this),
+                  addFormArrayItemFn: addFormArrayItem.bind(this)
+                }"
+              >
+              </ng-container>
+            </ng-container>
+
+            <!-- MODEL-TYPE: ARRAY CUSTOM ------------------------ -->
+
+            <ng-container
+              *ngIf="
+                !thereIsSomeModelControlTplWithSameType(
+                  customModelControlsTpl,
+                  controlModel
+                ) &&
+                !markAllAsReadOnly &&
+                controlModel.type === 'ARRAY' &&
+                showDefaultArraysEndTpl
+              "
+            >
+              <input
+                #indexHidden
+                type="hidden"
+                name="{{ id }}-index-{{ index }}"
+                class="df-form-control-array-index {{ id }}-index {{
+                  id
+                }}-index-{{ index }}"
+                value="{{ index }}"
+              />
+              <div
+                class=""
+                [class]="defaultFormArrayEndTplLayout.classes.actions_container"
+              >
+                <div
+                  class="mt-2"
+                  [class]="
+                    defaultFormArrayEndTplLayout.classes.actions_text_align
+                  "
+                >
+                  <button
+                    *ngIf="
+                      defaultFormArrayEndTplLayout.behaviors
+                        .show_actions_btn_insert &&
+                      context.groups.length !== index + 1
+                    "
+                    type="button"
+                    [class]="
+                      defaultFormArrayEndTplLayout.classes.actions_btn_insert
+                    "
+                    [title]="
+                      (useCustomArrayBtnTranslationsPrefix
+                        ? customArrayBtnTranslationsPrefix +
+                          '.' +
+                          context.id +
+                          '.arrays.actions_btn_insert_title'
+                        : defaultFormArrayEndTplLayout.labels
+                            .actions_btn_insert_title
+                      ) | translate
+                    "
+                    (click)="
+                      insertFormArrayItem(context.id, context, index + 1)
+                    "
+                  >
+                    <svg
+                      cIcon
+                      [class]="
+                        defaultFormArrayEndTplLayout.classes
+                          .actions_btn_insert_icon
+                      "
+                      [name]="
+                        defaultFormArrayEndTplLayout.classes
+                          .actions_btn_insert_icon_name
+                      "
+                      size="sm"
+                    ></svg>
+                    <span
+                      [innerHTML]="
+                        (useCustomArrayBtnTranslationsPrefix
+                          ? customArrayBtnTranslationsPrefix +
+                            '.' +
+                            context.id +
+                            '.arrays.actions_btn_insert_lbl'
+                          : defaultFormArrayEndTplLayout.labels
+                              .actions_btn_insert_lbl
+                        ) | translate
+                      "
+                    ></span>
+                  </button>
+                  <button
+                    *ngIf="
+                      defaultFormArrayEndTplLayout.behaviors
+                        .show_actions_btn_add &&
+                      context.groups.length === index + 1
+                    "
+                    type="button"
+                    [class]="
+                      defaultFormArrayEndTplLayout.classes.actions_btn_add
+                    "
+                    [title]="
+                      (useCustomArrayBtnTranslationsPrefix
+                        ? customArrayBtnTranslationsPrefix +
+                          '.' +
+                          context.id +
+                          '.arrays.actions_btn_add_title'
+                        : defaultFormArrayEndTplLayout.labels
+                            .actions_btn_add_title
+                      ) | translate
+                    "
+                    (click)="addFormArrayItem(context.id, context)"
+                  >
+                    <svg
+                      cIcon
+                      [class]="
+                        defaultFormArrayEndTplLayout.classes
+                          .actions_btn_add_icon
+                      "
+                      [name]="
+                        defaultFormArrayEndTplLayout.classes
+                          .actions_btn_add_icon_name
+                      "
+                      size="sm"
+                    ></svg>
+                    <span
+                      [innerHTML]="
+                        (useCustomArrayBtnTranslationsPrefix
+                          ? customArrayBtnTranslationsPrefix +
+                            '.' +
+                            context.id +
+                            '.arrays.actions_btn_add_lbl'
+                          : defaultFormArrayEndTplLayout.labels
+                              .actions_btn_add_lbl
+                        ) | translate
+                      "
+                    ></span>
+                  </button>
+                  <button
+                    *ngIf="
+                      defaultFormArrayEndTplLayout.behaviors
+                        .show_actions_btn_remove
+                    "
+                    type="button"
+                    [class]="
+                      defaultFormArrayEndTplLayout.classes.actions_btn_remove
+                    "
+                    [title]="
+                      (useCustomArrayBtnTranslationsPrefix
+                        ? customArrayBtnTranslationsPrefix +
+                          '.' +
+                          context.id +
+                          '.arrays.actions_btn_remove_title'
+                        : defaultFormArrayEndTplLayout.labels
+                            .actions_btn_remove_title
+                      ) | translate
+                    "
+                    [disabled]="
+                      defaultFormArrayEndTplLayout.behaviors
+                        .disable_action_btn_remove_in_only_item &&
+                      context.groups.length === 1
+                    "
+                    (click)="removeFormArrayItem(context.id, context, index)"
+                  >
+                    <svg
+                      cIcon
+                      [class]="
+                        defaultFormArrayEndTplLayout.classes
+                          .actions_btn_remove_icon
+                      "
+                      [name]="
+                        defaultFormArrayEndTplLayout.classes
+                          .actions_btn_remove_icon_name
+                      "
+                      size="sm"
+                    ></svg>
+                    <span
+                      [innerHTML]="
+                        (useCustomArrayBtnTranslationsPrefix
+                          ? customArrayBtnTranslationsPrefix +
+                            '.' +
+                            context.id +
+                            '.arrays.actions_btn_remove_lbl'
+                          : defaultFormArrayEndTplLayout.labels
+                              .actions_btn_remove_lbl
+                        ) | translate
+                      "
+                    ></span>
+                  </button>
+                </div>
+              </div>
+
+              <div
+                *ngIf="
+                  defaultFormArrayEndTplLayout.behaviors
+                    .show_hr_line_between_items &&
+                  context.groups.length !== index + 1
+                "
+                class="col-xs-12 col-sm-12"
+              >
+                <hr style="width: 100%" />
+              </div>
+
+              <div
+                *ngIf="
+                  defaultFormArrayEndTplLayout.behaviors
+                    .show_hr_line_in_last_item &&
+                  context.groups.length === index + 1
+                "
+                class="col-xs-12 col-sm-12"
+              >
+                <hr style="width: 100%" />
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <!-- ------------------------ -->
+
+          <!-- ERRORS TEMPLATE ------------------------ -->
+
+          <!--
+          <button
+            type="button"
+            (click)="
+              test({
+                _this: indexHidden,
+                val: indexHidden.value,
+                form: _formGroup,
+                model: controlModel,
+                id: id,
+                group: group,
+                index: index,
+                context: context,
+                control: getFormControlFromModel(_formGroup, controlModel)
+              })
+            "
+            (onload)="
+              test({
+                _this: indexHidden,
+                val: indexHidden.value,
+                form: _formGroup,
+                model: controlModel,
+                id: id,
+                group: group,
+                index: index,
+                context: context,
+                control: getFormControlFromModel(_formGroup, controlModel)
+              })
+            "
+          >
+            OK
+          </button>
+          -->
+          <ng-container
+            *ngIf="
+              showDefaultErrorsTpl &&
+              $any(controlModel)?.additional?.show_errors_messages !== false &&
+              hasFormControlErrors(_formGroup, controlModel, indexHidden.value)
+            "
+          >
+            <p [class]="defaultFormErrorsTplLayout.classes.container">
+              <ng-container
+                *ngFor="
+                  let error of getControlModelErrorsAsArray(
+                    _formGroup,
+                    controlModel,
+                    indexHidden.value
+                  );
+                  index as errorIndex
+                "
+              >
+                <small
+                  [class]="defaultFormErrorsTplLayout.classes.message"
+                  [class.mt-0]="errorIndex === 0"
+                  [class.mt-2]="errorIndex !== 0"
+                >
+                  <span
+                    [innerHTML]="
+                      (error.customError && error.customMessage
+                        ? error.customMessage
+                        : 'ui.errors.' + error.code
+                      ) | translate : error.params
+                    "
+                  ></span>
+                </small>
+              </ng-container>
+            </p>
+          </ng-container>
+
+          <!-- ERRORS TEMPLATE ------------------------ -->
+        </ng-template>
+
+        <!-- - -->
+      </ng-container>
+
+      <!-- --------------------------------------------------------------------------- -->
+
+      <!-- MODEL TYPE CUSTOM TEMPLATES ----------------------------------------------- -->
+
+      <!-- MODEL-TYPE ------------------------ -->
+
+      <!-- ------------------------ -->
+
+      <!-- MODEL: ARRAY CUSTOM ------------------------ -->
+
+      <!-- ------------------------ -->
+
+      <!-- --------------------------------------------------------------------------- -->
+    </dynamic-ngx-bootstrap-form>
+  </div>
+</ng-container>
+
+<!---
+  <ng-container *ngIf="customFormTpl"
+    [ngTemplateOutlet]="customFormTpl"
+    [ngTemplateOutletContext]="{
+      layout: _formLayout,
+      group: _formGroup,
+      model: _formModel,
+      events: {
+        onBlur: onBlur.bind(this),
+        onChange: onChange.bind(this),
+        onFocus: onFocus.bind(this),
+        onBsEvent: onBsEvent.bind(this)
+      }
+    }"
+  >
+  </ng-container>
+-->

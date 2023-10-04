@@ -1,0 +1,78 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2022",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@apps/app-base-api": [
+        "libs/app/base/api/src/index.ts"
+      ],
+      "@apps/app-base-domain": [
+        "libs/app/base/domain/src/index.ts"
+      ],
+      "@apps/app-base-feature": [
+        "libs/app/base/feature/src/index.ts"
+      ],
+      "@apps/app-base-layout": [
+        "libs/app/base/layout/src/index.ts"
+      ],
+      "@apps/app-base-store": [
+        "libs/app/base/store/src/index.ts"
+      ],
+      "@apps/app-base-ui": [
+        "libs/app/base/ui/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/core-api": [
+        "projects/core/api/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/core-auth": [
+        "projects/core/auth/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/core-ddd": [
+        "projects/core/ddd/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/core-layout": [
+        "projects/core/layout/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/core-service": [
+        "projects/core/service/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/core-ui": [
+        "projects/core/ui/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/core-util": [
+        "projects/core/util/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/ext-angular-disable-browser-back-button": [
+        "projects/ext/angular-disable-browser-back-button/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/ext-ng-dynamic-forms-ui-ngx-bootstrap": [
+        "projects/ext/ng-dynamic-forms-ui-ngx-bootstrap/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/ext-ngx-perfect-scrollbar": [
+        "projects/ext/ngx-perfect-scrollbar/src/index.ts"
+      ],
+      "@ng-techpromux-archetype-project/nx-plugin": [
+        "projects/nx-plugin/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

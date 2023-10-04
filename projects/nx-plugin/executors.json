@@ -1,0 +1,14 @@
+{
+  "executors": {
+    "echo": {
+      "implementation": "./src/executors/echo/executor",
+      "schema": "./src/executors/echo/schema.json",
+      "description": "Echo executor"
+    },
+    "extract-i18n": {
+      "implementation": "./src/executors/extract-i18n/executor",
+      "schema": "./src/executors/extract-i18n/schema.json",
+      "description": "ExtractI18n executor"
+    }
+  }
+}

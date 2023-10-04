@@ -1,0 +1,45 @@
+{
+  "name": "@ng-techpromux-archetype-project/core-ui",
+  "version": "1.0.0",
+  "description": "Angular Archetype Project - Core UI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techpromux/ng-techpromux-archetype-project.git"
+  },
+  "keywords": [
+    "angular",
+    "archetype"
+  ],
+  "author": "Techpromux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/techpromux/ng-techpromux-archetype-project/issues"
+  },
+  "homepage": "https://github.com/techpromux/ng-techpromux-archetype-project/tree/main/projects/core/ui#readme",
+  "peerDependencies": {
+    "@angular/common": "^16.2.0",
+    "@angular/core": "^16.2.0",
+    "@ng-techpromux-archetype-project/core-api": "^1.0.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ng-techpromux-archetype-project/core-service": "^1.0.0",
+    "rxjs": "~7.8.0",
+    "@ngxs/store": "^3.8.1",
+    "@swimlane/ngx-datatable": "^20.1.0",
+    "@angular/forms": "~16.2.0",
+    "@ng-dynamic-forms/core": "^18.0.0",
+    "@ng-techpromux-archetype-project/ext-ng-dynamic-forms-ui-ngx-bootstrap": "^1.0.0",
+    "@coreui/angular": "^4.5.16",
+    "@coreui/icons-angular": "^4.5.16",
+    "@ng-techpromux-archetype-project/core-auth": "^1.0.0",
+    "@ng-techpromux-archetype-project/core-util": "^1.0.0",
+    "angular-notifier": "^14.0.0",
+    "@capacitor/camera": "^5.0.7",
+    "ngx-bootstrap": "^11.0.2",
+    "@biesbjerg/ngx-translate-extract-marker": "^1.0.0",
+    "ngx-mask": "^16.3.9",
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/device": "^5.0.6"
+  },
+  "dependencies": {},
+  "sideEffects": false
+}

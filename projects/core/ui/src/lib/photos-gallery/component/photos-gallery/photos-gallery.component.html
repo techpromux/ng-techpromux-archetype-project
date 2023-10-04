@@ -1,0 +1,112 @@
+<label class="ms-1 mb-1 mt-2" *ngIf="header && (editable || photos.length > 0)">
+  {{ header }}
+</label>
+
+<div [class]="container_class">
+  <ng-container *ngFor="let photo of photos; let i = index">
+    <div
+      [style]="
+        editable
+          ? {
+              width: img_container_width_editable,
+              height: img_container_height_editable
+            }
+          : {
+              width: img_container_width_editable,
+              height: img_container_height_no_editable
+            }
+      "
+      [class]="img_container_class"
+    >
+      <img
+        loading="lazy"
+        class="img-thumbnail m-auto"
+        src="{{ (photo.saved ? imageStoreBasePath : '') + photo.url }}"
+        data-src="{{ (photo.saved ? imageStoreBasePath : '') + photo.url }}"
+        alt=""
+        [style]="{
+          'max-width': img_width,
+          'max-height': img_height,
+          cursor: 'zoom-in'
+        }"
+        (click)="
+          uiModalOpen(
+            photoGalleryItemModalTpl,
+            {
+              photo: photo
+            },
+            null,
+            {
+              class: 'modal-lg modal-dialog-centered'
+            }
+          )
+        "
+        ngSrc
+      />
+
+      <div class="flex-fill" *ngIf="editable">
+        <div
+          [class]="img_container_remove_btn_class"
+          [style]="img_container_remove_btn_style"
+        >
+          <button
+            cButton
+            color="danger"
+            type="button"
+            shape="rounded-pill"
+            class="ms-3 p-0 ps-1 pe-1"
+            size="sm"
+            (click)="removeFromModel(i)"
+          >
+            <svg cIcon name="cilMinus" size="sm"></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #photoGalleryItemModalTpl>
+      <div class="modal-body text-center" (click)="uiModalClose()">
+        <img
+          loading="lazy"
+          class="lozad img-thumbnail m-auto"
+          data-src="{{ (photo.saved ? imageStoreBasePath : '') + photo.url }}"
+          alt=""
+          style="
+            max-width: 100%;
+            max-height: calc(100vh - 200px);
+            cursor: zoom-out;
+          "
+          ngSrc
+        />
+      </div>
+    </ng-template>
+  </ng-container>
+</div>
+
+<div
+  style="width: 100px"
+  *ngIf="editable"
+  class="float-start text-center mb-1 position-relative pt-2 me-2"
+>
+  <button
+    cButton
+    class="ms-0"
+    color="secondary"
+    [active]="true"
+    variant="outline"
+    (click)="addFromGallery($event)"
+  >
+    <svg cIcon name="cil-image-plus" size="sm"></svg>
+  </button>
+
+  <button
+    cButton
+    class="ms-3"
+    color="secondary"
+    [active]="true"
+    variant="outline"
+    (click)="addFromCamera($event)"
+  >
+    <svg cIcon name="cil-camera" size="sm"></svg>
+  </button>
+</div>

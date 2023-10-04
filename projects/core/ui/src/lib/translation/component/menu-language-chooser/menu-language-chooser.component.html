@@ -1,0 +1,16 @@
+<div class="menu-language-chooser-wrapper">
+  <ng-container *ngIf="$any(languagesEnabled$ | async).length > 1">
+    <c-header-nav>
+      <c-nav-item *ngFor="let lang of languagesEnabled$ | async">
+        <a
+          href="javascript:void(0)"
+          cNavLink
+          (click)="changeCurrentLang(lang.key)"
+          [class.active]="lang.key === (currentLanguage$ | async)"
+        >
+          <svg cIcon [name]="lang.iconName" size="lg"></svg>
+        </a>
+      </c-nav-item>
+    </c-header-nav>
+  </ng-container>
+</div>

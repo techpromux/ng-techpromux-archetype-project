@@ -1,0 +1,142 @@
+{
+  "_current_lang_code": "es",
+  "_current_lang_name": "Español",
+  "app": {
+    "ui": {
+      "dynamic-forms": {}
+    }
+  },
+  "base": {
+    "actions": {
+      "button": {
+        "back": "Atrás",
+        "begin": "Iniciar",
+        "confirm": "Validar",
+        "next": "Siguiente",
+        "save": "Guardar",
+        "test": "",
+        "toList": "Listado"
+      }
+    },
+    "layout": {
+      "block": {
+        "menu": {
+          "flow": {
+            "back": {
+              "confirmationBody": "¿Desea regresar al paso previo?",
+              "confirmationTitle": "Confirmación"
+            },
+            "close": {
+              "confirmationBody": "¿Desea salir de la página actual?",
+              "confirmationTitle": "Confirmación"
+            },
+            "exit": {
+              "confirmationBody": "¿Desea cerrar la aplicación?",
+              "confirmationTitle": "Confirmación"
+            },
+            "home": {
+              "confirmationBody": "¿Desea ir a la página principal?",
+              "confirmationTitle": "Confirmación"
+            },
+            "logout": {
+              "confirmationBody": "¿Desea cerrar la sesión actual?",
+              "confirmationTitle": "Confirmación"
+            }
+          },
+          "quick-links": {
+            "dashboard": "Dashboard",
+            "home": "Inicio",
+            "settings": "Configuraciones"
+          },
+          "user": {
+            "login": "Acceder",
+            "logout": "Salir",
+            "notifications": "Alertas",
+            "profile": "Perfil",
+            "settings": "Administración",
+            "system": "Sistema"
+          }
+        }
+      }
+    },
+    "login": {
+      "form": {
+        "button": {
+          "forgotPassword": "¿Olvidó la contraseña?",
+          "login": "Acceder"
+        },
+        "header": {
+          "subtitle": "Identifíquese para acceder",
+          "title": "Acceso"
+        },
+        "password": "Contraseña",
+        "rememberme": "Recuérdame",
+        "selectProvider": "Selecciona el método de acceso",
+        "username": "Usuario"
+      },
+      "provider": {
+        "LARAVEL9": {
+          "title": "Laravel"
+        },
+        "MOCKED_USER_DATA": {
+          "title": "Mocked"
+        },
+        "OAUTH2_KEYCLOAK": {
+          "title": "Keycloak"
+        },
+        "OAUTH2_SOCIAL_FACEBOOK": {
+          "title": "Facebook"
+        },
+        "OAUTH2_SOCIAL_GOOGLE": {
+          "title": "Google"
+        },
+        "SUITECRM7": {
+          "title": "SuiteCRM"
+        }
+      }
+    }
+  },
+  "ui": {
+    "datatable": {
+      "attributes": {
+        "#": "<b>No.</b>"
+      },
+      "footer": {
+        "currentOfTotal": "{{current}} de {{total}}",
+        "itemsSelected": "seleccionados: {{selected}}",
+        "showSize": "Mostrar:"
+      }
+    },
+    "dynamic-forms": {
+      "arrays": {
+        "actions_btn_add_lbl": "",
+        "actions_btn_add_title": "",
+        "actions_btn_insert_lbl": "",
+        "actions_btn_insert_title": "",
+        "actions_btn_remove_lbl": "",
+        "actions_btn_remove_title": ""
+      }
+    },
+    "errors": {
+      "mask": "{{ label }} con formato incorrecto.",
+      "max": "{{ label }} no debe ser mayor que {{ max }}.",
+      "maxlength": "Máxima longitud requerida de {{ requiredLength }}.",
+      "min": "{{ label }} no debe ser menor que {{ min }}.",
+      "minlength": "Mínima longitud requerida de {{ requiredLength }}.",
+      "required": "{{ label }} es requerido."
+    },
+    "modal": {
+      "alert": {
+        "button": {
+          "close": "Aceptar"
+        }
+      },
+      "confirm": {
+        "button": {
+          "no": "Cancelar",
+          "yes": "Aceptar"
+        }
+      }
+    }
+  }
+}

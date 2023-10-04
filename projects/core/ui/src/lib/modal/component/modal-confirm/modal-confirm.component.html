@@ -1,0 +1,60 @@
+<c-modal-header>
+  <h5 cModalTitle>
+    <div class="modal-title-content" [innerHTML]="command?.title"></div>
+  </h5>
+  <button cButtonClose (click)="hide()"></button>
+</c-modal-header>
+<c-modal-body>
+  <div class="modal-body-content" [innerHTML]="command?.body"></div>
+</c-modal-body>
+<c-modal-footer>
+  <button
+    cButton
+    style="min-width: 80px"
+    color="{{
+      command?.extraOptions?.btnCancelColorClass
+        ? command?.extraOptions?.btnCancelColorClass
+        : 'secondary'
+    }}"
+    variant="outline"
+    (click)="decline()"
+  >
+    <svg
+      cIcon
+      name="{{
+        command?.extraOptions?.btnCancelIconClass
+          ? command?.extraOptions?.btnCancelIconClass
+          : 'cil-ban'
+      }}"
+      width="16"
+      size="sm"
+    ></svg>
+    <span class="ps-2 pe-2 align-top">{{
+      'ui.modal.confirm.button.no' | translate
+    }}</span>
+  </button>
+  <button
+    cButton
+    style="min-width: 80px"
+    color="{{
+      command?.extraOptions?.btnConfirmColorClass
+        ? command?.extraOptions?.btnConfirmColorClass
+        : 'primary'
+    }}"
+    (click)="confirm()"
+  >
+    <svg
+      cIcon
+      name="{{
+        command?.extraOptions?.btnConfirmIconClass
+          ? command?.extraOptions?.btnConfirmIconClass
+          : 'cil-check'
+      }}"
+      width="16"
+      size="sm"
+    ></svg>
+    <span class="ps-2 pe-2 align-top">{{
+      'ui.modal.confirm.button.yes' | translate
+    }}</span>
+  </button>
+</c-modal-footer>

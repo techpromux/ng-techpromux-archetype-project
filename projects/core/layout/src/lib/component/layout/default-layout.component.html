@@ -1,0 +1,75 @@
+<!--sidebar-->
+<c-sidebar
+  #sidebar="cSidebar"
+  class="d-print-none sidebar sidebar-fixed"
+  id="sidebar"
+  visible
+  [unfoldable]="showSidebarInitialFolded"
+>
+  <c-sidebar-brand
+    [brandFull]="{
+      src: 'assets/img/brand/coreui-angular.svg',
+      width: 200,
+      height: 46,
+      alt: 'Application'
+    }"
+    [brandNarrow]="{
+      src: 'assets/img/brand/coreui-signet-white.svg',
+      width: 46,
+      height: 46,
+      alt: 'Application'
+    }"
+    routerLink="./"
+  >
+  </c-sidebar-brand>
+
+  <perfect-scrollbar [config]="perfectScrollbarConfig">
+    <!--  [perfectScrollbar]="perfectScrollbarConfig"-->
+    <c-sidebar-nav [navItems]="mainNavItems" dropdownMode="close">
+    </c-sidebar-nav>
+  </perfect-scrollbar>
+
+  <c-sidebar-footer *ngIf="footerNavItems.length > 0">
+    <c-sidebar-nav [navItems]="footerNavItems" dropdownMode="close">
+    </c-sidebar-nav>
+  </c-sidebar-footer>
+
+  <c-sidebar-toggler
+    *ngIf="showSidebarToggler && !sidebar.narrow"
+    [toggle]="'unfoldable'"
+    cSidebarToggle="sidebar"
+    (click)="onSideBarToggle($event)"
+  ></c-sidebar-toggler>
+</c-sidebar>
+
+<!--main-->
+<div
+  class="wrapper d-flex flex-column min-vh-100 dark:bg-transparent"
+  [class.bg-light]="theme === 'light'"
+  [class.bg-dark]="theme === 'dark'"
+>
+  <!--app-header-->
+  <ng-content select="[header]"></ng-content>
+  <!--app-body-->
+  <div class="body flex-grow-1 px-2 pt-1">
+    <!--
+    <c-container breakpoint="lg" class="h-auto">
+      <router-outlet></router-outlet>
+    </c-container>
+     -->
+    <c-container
+      fluid
+      class="h-auto ps-0 pe-0"
+      [@routeAnimations]="getRouteAnimationData()"
+    >
+      <router-outlet></router-outlet>
+    </c-container>
+  </div>
+  <!--app footer-->
+  <c-footer
+    position="sticky"
+    class="ml-1 mr-1 ps-0 pe-0 pt-0 pb-0 content-no-printable"
+  >
+    <ng-content select="[footer]"></ng-content>
+  </c-footer>
+</div>

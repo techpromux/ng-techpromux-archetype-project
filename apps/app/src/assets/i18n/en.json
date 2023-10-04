@@ -1,0 +1,142 @@
+{
+  "_current_lang_code": "en",
+  "_current_lang_name": "English",
+  "app": {
+    "ui": {
+      "dynamic-forms": {}
+    }
+  },
+  "base": {
+    "actions": {
+      "button": {
+        "back": "Back",
+        "begin": "Init",
+        "confirm": "Confirm",
+        "next": "Next",
+        "save": "Save",
+        "step1": "Step # 1",
+        "step2": "Step # 2",
+        "step3": "Step # 3",
+        "test": "Test",
+        "toList": "Go to List"
+      }
+    },
+    "layout": {
+      "block": {
+        "menu": {
+          "flow": {
+            "back": {
+              "confirmationBody": "Do you want to return?",
+              "confirmationTitle": "Confirmation"
+            },
+            "close": {
+              "confirmationBody": "Do you want to exit from actual page?",
+              "confirmationTitle": "Confirmation"
+            },
+            "exit": {
+              "confirmationBody": "Do you want to close the application?",
+              "confirmationTitle": "Confirmation"
+            },
+            "home": {
+              "confirmationBody": "Do you want to return to main page?",
+              "confirmationTitle": "Confirmation"
+            },
+            "logout": {
+              "confirmationBody": "Do you want to close the current session?",
+              "confirmationTitle": "Confirmation"
+            }
+          },
+          "quick-links": {
+            "dashboard": "Dashboard",
+            "home": "Home",
+            "settings": "Settings"
+          },
+          "user": {
+            "login": "Login",
+            "logout": "Logout",
+            "notifications": "Notifications",
+            "profile": "Profile",
+            "settings": "Settings",
+            "system": "System"
+          }
+        }
+      }
+    },
+    "login": {
+      "form": {
+        "button": {
+          "forgotPassword": "Forgot the password?",
+          "login": "Login"
+        },
+        "header": {
+          "subtitle": "Sign in into your account",
+          "title": "Login"
+        },
+        "password": "Password",
+        "rememberme": "Remember me",
+        "selectProvider": "Select access method",
+        "username": "Username"
+      },
+      "provider": {
+        "LARAVEL9": {
+          "title": "Laravel"
+        },
+        "MOCKED_USER_DATA": {
+          "title": "Mocked"
+        },
+        "OAUTH2_KEYCLOAK": {
+          "title": "Keycloak"
+        },
+        "OAUTH2_SOCIAL_FACEBOOK": {
+          "title": "Facebook"
+        },
+        "OAUTH2_SOCIAL_GOOGLE": {
+          "title": "Google"
+        },
+        "SUITECRM7": {
+          "title": "SuiteCRM"
+        }
+      }
+    }
+  },
+  "ui": {
+    "datatable": {
+      "attributes": {
+        "#": "<b>#</b>"
+      },
+      "footer": {
+        "currentOfTotal": "{{current}} of {{total}}",
+        "itemsSelected": "selected: {{selected}}",
+        "showSize": "Show:"
+      }
+    },
+    "dynamic-forms": {
+      "arrays": {
+        "actions_btn_add_lbl": "Add",
+        "actions_btn_add_title": "",
+        "actions_btn_insert_lbl": "Insert",
+        "actions_btn_insert_title": "",
+        "actions_btn_remove_lbl": "Remove"
+      }
+    },
+    "errors": {
+      "mask": "{{ label }} malformed.",
+      "maxlength": "Max length required is {{ requiredLength }}.",
+      "minlength": "Min length required is {{ requiredLength }}.",
+      "required": "{{ label }} is required."
+    },
+    "modal": {
+      "alert": {
+        "button": {
+          "close": "Close"
+        }
+      },
+      "confirm": {
+        "button": {
+          "no": "No",
+          "yes": "Yes"
+        }
+      }
+    }
+  }
+}

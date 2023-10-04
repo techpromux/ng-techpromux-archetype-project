@@ -1,0 +1,134 @@
+<div [formGroup]="group" [class.input-group]="model.prefix || model.suffix">
+  <div *ngIf="model.prefix" class="input-group-prepend">
+    <span class="input-group-text" [innerHTML]="model.prefix"></span>
+  </div>
+
+  <input
+    *ngIf="model.inputType === 'file'"
+    class="form-control-file"
+    [attr.accept]="model.accept"
+    [attr.max]="model.max"
+    [attr.min]="model.min"
+    [attr.multiple]="model.multiple"
+    [attr.step]="model.step"
+    [autocomplete]="model.autoComplete"
+    [autofocus]="model.autoFocus"
+    [class.is-invalid]="showErrorMessages"
+    [dynamicList]="$any(model.listId)"
+    [formControlName]="model.id"
+    [id]="id"
+    [maxlength]="model.maxLength"
+    [minlength]="model.minLength"
+    [name]="model.name"
+    [ngClass]="getClass('element', 'control')"
+    [pattern]="$any(model.pattern)"
+    [placeholder]="model.placeholder"
+    [readonly]="model.readOnly"
+    [required]="model.required"
+    [spellcheck]="model.spellCheck"
+    [tabindex]="model.tabIndex"
+    [type]="model.inputType"
+    (blur)="onBlur($event)"
+    (change)="onChange($event)"
+    (focus)="onFocus($event)"
+  />
+
+  <input
+    *ngIf="model.inputType === 'number' || model.inputType === 'hidden'"
+    class="form-control"
+    [attr.accept]="model.accept"
+    [attr.max]="model.max"
+    [attr.min]="model.min"
+    [attr.multiple]="model.multiple"
+    [attr.step]="model.step"
+    [autocomplete]="model.autoComplete"
+    [autofocus]="model.autoFocus"
+    [class.is-invalid]="showErrorMessages"
+    [dynamicList]="$any(model.listId)"
+    [formControlName]="model.id"
+    [id]="id"
+    [maxlength]="model.maxLength"
+    [minlength]="model.minLength"
+    [name]="model.name"
+    [ngClass]="getClass('element', 'control')"
+    [pattern]="$any(model.pattern)"
+    [placeholder]="model.placeholder"
+    [readonly]="model.readOnly"
+    [required]="model.required"
+    [spellcheck]="model.spellCheck"
+    [tabindex]="model.tabIndex"
+    [type]="model.inputType"
+    (blur)="onBlur($event)"
+    (change)="onChange($event)"
+    (focus)="onFocus($event)"
+  />
+
+  <ng-container
+    *ngIf="
+      model.inputType === 'file' ||
+        model.inputType === 'number' ||
+        model.inputType === 'hidden';
+      else maskedInput
+    "
+  ></ng-container>
+
+  <ng-template #maskedInput>
+    <input
+      class="form-control"
+      [attr.accept]="model.accept"
+      [attr.max]="model.max"
+      [attr.min]="model.min"
+      [attr.multiple]="model.multiple"
+      [attr.step]="model.step"
+      [autocomplete]="model.autoComplete"
+      [autofocus]="model.autoFocus"
+      [class.is-invalid]="showErrorMessages"
+      [dynamicList]="$any(model.listId)"
+      [formControlName]="model.id"
+      [id]="id"
+      [maxlength]="model.maxLength"
+      [minlength]="model.minLength"
+      [name]="model.name"
+      [ngClass]="getClass('element', 'control')"
+      [pattern]="$any(model.pattern)"
+      [placeholder]="model.placeholder"
+      [readonly]="model.readOnly"
+      [required]="model.required"
+      [spellcheck]="model.spellCheck"
+      [tabindex]="model.tabIndex"
+      [mask]="model.mask"
+      [specialCharacters]="$any(model.maskConfig)?.specialCharacters"
+      [patterns]="$any(model.maskConfig)?.patterns"
+      [prefix]="$any(model.maskConfig)?.prefix"
+      [suffix]="$any(model.maskConfig)?.suffix"
+      [thousandSeparator]="$any(model.maskConfig)?.thousandSeparator"
+      [decimalMarker]="$any(model.maskConfig)?.decimalMarker"
+      [dropSpecialCharacters]="$any(model.maskConfig)?.dropSpecialCharacters"
+      [hiddenInput]="$any(model.maskConfig)?.hiddenInput"
+      [showMaskTyped]="$any(model.maskConfig)?.showMaskTyped"
+      [placeHolderCharacter]="$any(model.maskConfig)?.placeHolderCharacter"
+      [shownMaskExpression]="$any(model.maskConfig)?.shownMaskExpression"
+      [showTemplate]="$any(model.maskConfig)?.showTemplate"
+      [clearIfNotMatch]="$any(model.maskConfig)?.clearIfNotMatch"
+      [validation]="$any(model.maskConfig)?.validation"
+      [separatorLimit]="$any(model.maskConfig)?.separatorLimit"
+      [allowNegativeNumbers]="$any(model.maskConfig)?.allowNegativeNumbers"
+      [leadZeroDateTime]="$any(model.maskConfig)?.leadZeroDateTime"
+      [type]="model.inputType"
+      (blur)="onBlur($event)"
+      (change)="onChange($event)"
+      (focus)="onFocus($event)"
+    />
+  </ng-template>
+
+  <div *ngIf="model.suffix" class="input-group-append">
+    <span class="input-group-text" [innerHTML]="model.suffix"></span>
+  </div>
+
+  <datalist *ngIf="model.hasList" [id]="model.listId">
+    <option
+      *ngFor="let option of model.list$ | async"
+      [value]="option"
+    ></option>
+  </datalist>
+</div>

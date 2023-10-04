@@ -1,0 +1,15 @@
+.menu-language-chooser-wrapper .nav-item a {
+    opacity: .3
+}
+ 
+.menu-language-chooser-wrapper .nav-item a.disabled {
+    opacity: .3;
+}
+
+ .menu-language-chooser-wrapper .nav-item a:hover {
+    opacity: 1.0
+ }
+  
+ .menu-language-chooser-wrapper .nav-item a.active {
+    opacity: 1.0;
+ }

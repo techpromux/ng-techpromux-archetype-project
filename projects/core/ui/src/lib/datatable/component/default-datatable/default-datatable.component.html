@@ -1,0 +1,309 @@
+<div
+  #datatableWrapper
+  class="datatable-wrapper datatable-wrapper-table-responsive"
+  [class]="
+    currentTableSettings.viewSettings.wrapperClasses
+      ? currentTableSettings.viewSettings.wrapperClasses
+      : ''
+  "
+  [style]="
+    currentTableSettings.viewSettings.wrapperStyles
+      ? currentTableSettings.viewSettings.wrapperStyles
+      : ''
+  "
+>
+  <ngx-datatable
+    #dataTable
+    class="bootstrap app-ui-datatable table table-bordered expandable sortable"
+    [class]="
+      currentTableSettings.viewSettings.tableClasses
+        ? currentTableSettings.viewSettings.tableClasses
+        : ''
+    "
+    [style]="
+      currentTableSettings.viewSettings.tableStyles
+        ? currentTableSettings.viewSettings.tableStyles
+        : ''
+    "
+    [class.hide-row-center-on-mobile-window-width]="
+      currentTableSettings.viewSettings.toggleRowDetailByWindowSize
+    "
+    [class.show-row-center-on-mobile-window-width]="
+      !currentTableSettings.viewSettings.toggleRowDetailByWindowSize
+    "
+    [columns]="currentTableSettings.columnsSettings.columns"
+    [rows]="currentTableSettings.dataSettings.items"
+    [count]="currentTableSettings.dataSettings.total"
+    [offset]="currentTableSettings.dataSettings.page"
+    [limit]="currentTableSettings.dataSettings.pageSize"
+    [selected]="selectedItems!"
+    [rowIdentity]="currentTableSettings.dataSettings.rowIdentity!"
+    [sorts]="currentTableSettings.dataSettings.sorts!"
+    [sortType]="currentTableSettings.dataSettings.sortType!"
+    [selectionType]="currentTableSettings.dataSettings.selectionType!"
+    [selectAllRowsOnPage]="
+      !!currentTableSettings.dataSettings.selectAllRowsOnPage
+    "
+    [selectCheck]="currentTableSettings.dataSettings.selectCheck!"
+    [displayCheck]="currentTableSettings.dataSettings.displayCheck!"
+    [externalPaging]="currentTableSettings.dataSettings.externalPaging!"
+    [externalSorting]="currentTableSettings.dataSettings.externalSorting!"
+    [groupRowsBy]="
+      currentTableSettings.dataSettings.groupRowsBy
+        ? currentTableSettings.dataSettings.groupRowsBy
+        : ''
+    "
+    [groupExpansionDefault]="
+      !!currentTableSettings.viewSettings.groupExpansionDefault
+    "
+    [treeFromRelation]="
+      currentTableSettings.dataSettings.treeFromRelation
+        ? currentTableSettings.dataSettings.treeFromRelation
+        : ''
+    "
+    [treeToRelation]="
+      currentTableSettings.dataSettings.treeToRelation
+        ? currentTableSettings.dataSettings.treeToRelation
+        : ''
+    "
+    [loadingIndicator]="currentTableSettings.viewSettings.loadingIndicator"
+    [columnMode]="currentTableSettings.viewSettings.columnMode"
+    [rowClass]="currentTableSettings.viewSettings.rowClass"
+    [headerHeight]="currentTableSettings.viewSettings.headerHeight"
+    [rowHeight]="currentTableSettings.viewSettings.rowHeight"
+    [footerHeight]="
+      currentTableSettings.viewSettings.footerHeight
+        ? currentTableSettings.viewSettings.footerHeight
+        : 0
+    "
+    [reorderable]="currentTableSettings.viewSettings.reorderable"
+    [swapColumns]="currentTableSettings.viewSettings.swapColumns"
+    [scrollbarH]="currentTableSettings.viewSettings.scrollbarH"
+    [scrollbarV]="currentTableSettings.viewSettings.scrollbarV"
+    [virtualization]="currentTableSettings.viewSettings.virtualization"
+    (activate)="onActivate($event)"
+    (reorder)="onReorder($event)"
+    (resize)="onResize($event)"
+    (scroll)="onScroll($event)"
+    (treeAction)="onTreeAction($event)"
+    (tableContextmenu)="onTableContextMenu($event)"
+    (page)="onPage($event)"
+    (sort)="onSort($event)"
+    (select)="onSelect($event)"
+  >
+    <!-- Group Header Template -->
+    <ngx-datatable-group-header
+      #myGroupHeader
+      *ngIf="
+        currentTableSettings.dataSettings.groupRows &&
+        currentTableSettings.viewSettings.groupRowsHeaderTemplate
+      "
+      (toggle)="onDetailToggle($event)"
+    >
+      <ng-template
+        let-group="group"
+        let-expanded="expanded"
+        ngx-datatable-group-header-template
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            currentTableSettings.viewSettings.groupRowsHeaderTemplate;
+            context: { group: group, expanded: expanded }
+          "
+        >
+        </ng-container>
+      </ng-template>
+    </ngx-datatable-group-header>
+
+    <!-- Row Details Template -->
+    <ngx-datatable-row-detail
+      #myDetailRow
+      *ngIf="currentTableSettings.viewSettings.rowDetailsTemplate"
+      (toggle)="onDetailToggle($event)"
+    >
+      <ng-template
+        let-row="row"
+        let-column="column"
+        ngx-datatable-row-detail-template
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            currentTableSettings.viewSettings.rowDetailsTemplate;
+            context: { row: row, column: column }
+          "
+        ></ng-container>
+      </ng-template>
+    </ngx-datatable-row-detail>
+
+    <!-- Footer Template -->
+    <ngx-datatable-footer
+      *ngIf="
+        !currentTableSettings.viewSettings.footerHide &&
+        currentTableSettings.viewSettings.footerShowCustomTemplate
+      "
+      class=""
+    >
+      <ng-template
+        ngx-datatable-footer-template
+        let-rowCount="rowCount"
+        let-pageSize="pageSize"
+        let-selectedCount="selectedCount"
+        let-curPage="curPage"
+        let-offset="offset"
+      >
+        <div class="container-fluid float-none">
+          <div class="row">
+            <div
+              class="col-md-8 col-sm-8 col-xs-12 d-flex justify-content-start"
+            >
+              <div class="d-flex">
+                <span
+                  style="padding: 10px"
+                  [innerText]="'ui.datatable.footer.showSize' | translate"
+                >
+                </span>
+                <div class="datatable-footer-pager-select">
+                  <select
+                    title="pageSize"
+                    class="form-control"
+                    #pageSizeSelect
+                    [ngModel]="pageSize"
+                    [ngModelOptions]="{ standalone: true }"
+                    (change)="onPageSize($event)"
+                  >
+                    <ng-container
+                      *ngFor="
+                        let val of currentTableSettings.viewSettings
+                          .footerPagingPageSizeOptions
+                      "
+                    >
+                      <option
+                        style="color: #ededed; background: #424242"
+                        [value]="val"
+                        [innerText]="val"
+                      ></option>
+                    </ng-container>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex">
+                <datatable-pager
+                  [pagerLeftArrowIcon]="
+                    (currentTextDirectionInverted | async)
+                      ? 'datatable-icon-right'
+                      : 'datatable-icon-left'
+                  "
+                  [pagerRightArrowIcon]="
+                    (currentTextDirectionInverted | async)
+                      ? 'datatable-icon-left'
+                      : 'datatable-icon-right'
+                  "
+                  [pagerPreviousIcon]="
+                    (currentTextDirectionInverted | async)
+                      ? 'datatable-icon-skip'
+                      : 'datatable-icon-prev'
+                  "
+                  [pagerNextIcon]="
+                    (currentTextDirectionInverted | async)
+                      ? 'datatable-icon-prev'
+                      : 'datatable-icon-skip'
+                  "
+                  [page]="curPage"
+                  [size]="pageSize"
+                  [count]="rowCount"
+                  [hidden]="false"
+                  (change)="onPage({ offset: $event['page'] - 1 })"
+                >
+                </datatable-pager>
+              </div>
+            </div>
+
+            <div
+              class="col-md-4 col-sm-4 col-xs-12 d-flex"
+              [class.justify-content-start]="hasMobileSize()"
+              [class.justify-content-end]="!hasMobileSize()"
+            >
+              <div style="padding: 10px">
+                <span
+                  [innerText]="
+                    'ui.datatable.footer.currentOfTotal'
+                      | translate
+                        : {
+                            current: dataTable?.bodyComponent?.temp?.length
+                              ? dataTable?.bodyComponent?.temp?.length
+                              : 0,
+                            total: rowCount ? rowCount : 0
+                          }
+                  "
+                >
+                </span>
+                <span [innerText]="' | '"></span>
+                <span
+                  [innerText]="
+                    'ui.datatable.footer.itemsSelected'
+                      | translate
+                        : {
+                            selected: selectedCount ? selectedCount : 0
+                          }
+                  "
+                >
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-footer>
+  </ngx-datatable>
+</div>
+<!-- ----------------------------------------------------------------------------- -->
+
+<ng-template
+  #fieldTranslatableHeaderTpl
+  ngx-datatable-header-template
+  let-column="column"
+>
+  <span
+    class="datatable-header-cell-label draggable"
+    [innerHTML]="column.name | translate"
+  ></span>
+</ng-template>
+
+<!-- ----------------------------------------------------------------------------- -->
+
+<ng-template
+  #fieldCheckboxableHeaderTpl
+  ngx-datatable-header-template
+  let-column="column"
+  let-value="value"
+  let-allRowsSelected="allRowsSelected"
+  let-selectFn="selectFn"
+>
+  <input
+    title="Select All"
+    type="checkbox"
+    [checked]="selectAllOnPage[currentTableSettings.dataSettings.page]"
+    (change)="onSelectAll($event)"
+  />
+</ng-template>
+
+<!-- ----------------------------------------------------------------------------- -->
+
+<ng-template
+  #fieldCheckboxableCellTpl
+  ngx-datatable-cell-template
+  let-row="row"
+  let-value="value"
+  let-isSelected="isSelected"
+  let-onCheckboxChangeFn="onCheckboxChangeFn"
+>
+  <input
+    title="Select Item"
+    type="checkbox"
+    *ngIf="canDisplayCheck(row, '', value)"
+    [checked]="isSelected"
+    (change)="onCheckboxChangeFn($event)"
+  />
+</ng-template>
+
+<!-- ----------------------------------------------------------------------------- -->

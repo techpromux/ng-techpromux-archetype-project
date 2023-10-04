@@ -1,0 +1,28 @@
+{
+  "name": "@ng-techpromux-archetype-project/ext-ngx-perfect-scrollbar",
+  "version": "1.0.0",
+  "description": "Angular Archetype Project - Ext - ngx-perfect-scrollbar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techpromux/ng-techpromux-archetype-project.git"
+  },
+  "keywords": [
+    "angular",
+    "archetype"
+  ],
+  "author": "Techpromux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/techpromux/ng-techpromux-archetype-project/issues"
+  },
+  "homepage": "https://github.com/techpromux/ng-techpromux-archetype-project/tree/main/projects/ext/ngx-perfect-scrollbar#readme",
+  "peerDependencies": {
+    "@angular/common": "^16.2.0",
+    "@angular/core": "^16.2.0",
+    "rxjs": "~7.8.0",
+    "perfect-scrollbar": "^1.5.5",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "dependencies": {},
+  "sideEffects": false
+}
