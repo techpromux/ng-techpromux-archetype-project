@@ -30,13 +30,7 @@ import {
   CoreUiOptionsListsModule,
   CoreUiPhotosGalleryModule,
 } from '@ng-techpromux-archetype-project/core-ui';
-import {
-  BsDatepickerConfig,
-  BsDatepickerInlineConfig,
-  BsDatepickerModule,
-  BsDaterangepickerConfig,
-  BsDaterangepickerInlineConfig,
-} from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   imports: [
@@ -75,9 +69,7 @@ import {
     // ---------------------------------
   ],
   declarations: [],
-  providers: [
-
-  ],
+  providers: [],
   exports: [
     // ---------------------------------
     FormsModule,
