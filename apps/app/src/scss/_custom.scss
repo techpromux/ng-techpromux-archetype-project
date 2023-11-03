@@ -777,6 +777,17 @@ dynamic-ngx-bootstrap-form-control
     }
   }
 
+  ng-select.ng-dynamic-forms-ngx-bootstrap-select-ng-select.ng-select-multiple {
+    .ng-select-container {
+      padding-bottom: 2px !important;
+      padding-top: 2px !important;
+
+      .ng-value {
+        margin-bottom: 1px !important;
+      }
+    }
+  }
+
   .ng-select.ng-invalid.ng-touched {
     .ng-arrow-wrapper {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23f86c6b' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23f86c6b' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
@@ -798,6 +809,24 @@ dynamic-ngx-bootstrap-form-control
       margin-right: -15px;
     }
   }
+}
+
+dynamic-ngx-bootstrap-form-control
+  > .ng-dynamic-forms-radio_group
+  dynamic-ngx-bootstrap-radio-group
+  .btn-group
+  .btn {
+  border-color: var(--cui-btn-disabled-border-color);
+  opacity: var(--cui-btn-disabled-opacity);
+}
+
+dynamic-ngx-bootstrap-form-control
+  > .ng-dynamic-forms-radio_group
+  dynamic-ngx-bootstrap-radio-group
+  .btn-group
+  .btn.active {
+  background-color: var(--cui-secondary-bg);
+  opacity: 1;
 }
 
 /* ---------------------------------------------------------- */

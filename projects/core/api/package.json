@@ -1,6 +1,6 @@
 {
   "name": "@ng-techpromux-archetype-project/core-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular Archetype Project - Core Api",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/techpromux/ng-techpromux-archetype-project/tree/main/projects/core/api#readme",
   "peerDependencies": {
-    "@ng-techpromux-archetype-project/core-util": "^1.0.3",
+    "@ng-techpromux-archetype-project/core-util": "^1.0.4",
     "@angular/core": "~16.2.0",
     "rxjs": "~7.8.0",
     "@angular/common": "~16.2.0"

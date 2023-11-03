@@ -1,6 +1,6 @@
 {
   "name": "@ng-techpromux-archetype-project/nx-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular Archetype Project - Nx plugin",
   "repository": {
     "type": "git",

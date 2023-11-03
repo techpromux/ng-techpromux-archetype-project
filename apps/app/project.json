@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/app",
@@ -24,12 +24,11 @@
         ],
         "styles": ["apps/app/src/scss/styles.scss"],
         "scripts": [],
-        "allowedCommonJsDependencies": [
-          "crypto-js",
-          "!val-loader!./dotenv-loader"
-        ],
         "serviceWorker": true,
-        "ngswConfigPath": "apps/app/ngsw-config.json"
+        "ngswConfigPath": "apps/app/ngsw-config.json",
+        "customWebpackConfig": {
+          "path": "apps/app/webpack.config.js"
+        }
       },
       "configurations": {
         "production": {
@@ -86,7 +85,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:webpack-dev-server",
       "options": {
         "port": 4200
       },
